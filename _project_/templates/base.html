@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+</head>
+<body>
+<h1>Обмен опросниками</h1>
+<h2>
+{% block title %}
+{% endblock %}
+</h2>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        go <a href="{% url 'index' %}">home</a>
+    </footer>
+</body>
+</html>

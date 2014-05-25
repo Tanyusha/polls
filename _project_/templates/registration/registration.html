@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Регистрация пользователя{% endblock %}
+
+{% block content %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors or form.errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger non-field-error">{{ error }}</div>
+                {% empty %}
+                    <div class="alert alert-danger field-error">Please correct the errors below.</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {{ form.username.errors }}
+        {% render_field form.username placeholder=form.username.label %}
+        <br/>
+
+        {{ form.password1.errors }}
+        {% render_field form.password1 placeholder=form.password1.label %}
+        <br/>
+
+        {{ form.password2.errors }}
+        {% render_field form.password2 placeholder=form.password2.label %}
+        <br/>
+
+        <input type="submit" value="Зарегистрировать"/>
+    </form>
+{% endblock %}
