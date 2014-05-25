@@ -12,11 +12,11 @@ from polls.models import Choice, Poll
 
 class IndexView(generic.ListView):
     template_name = 'polls/list.html'
-    context_object_name = 'latest_poll_list'
+    context_object_name = 'poll_list'
 
     def get_queryset(self):
         """Return the last five published polls."""
-        return Poll.objects.filter(user=self.request.user.pk).order_by('-pub_date')[:5]
+        return Poll.objects.filter(user=self.request.user.pk)
 
 
 class DetailView(generic.DetailView):

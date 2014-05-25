@@ -1,8 +1,16 @@
 {% extends "base.html" %}
+{% block title %}
+    Пользователь:
+    {% for poll in poll_list %}
+        {% if forloop.counter == 1 %}
+            {{ poll.user }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
     {% block content %}
-    {% if latest_poll_list %}
+    {% if poll_list %}
         <ul>
-        {% for poll in latest_poll_list %}
+        {% for poll in poll_list %}
             <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></li>
         {% endfor %}
         </ul>
