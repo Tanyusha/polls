@@ -10,7 +10,9 @@
         {% csrf_token %}
 
         {% render_field form.username placeholder=form.username.label %}
+        <br/>
         {% render_field form.password placeholder=form.password.label %}
+        <br/>
     <input type="submit" value="Войти"/>
     </form>
 

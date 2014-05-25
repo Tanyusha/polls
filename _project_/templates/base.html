@@ -6,11 +6,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 </head>
 <body>
+{% block exit %}
+{% endblock %}
 <h1>Обмен опросниками</h1>
-<h2>
+<p>
 {% block title %}
 {% endblock %}
-</h2>
+</p>
 
     {% block content %}
 

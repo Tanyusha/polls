@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block exit %}
+    <p style="text-align: right;"><a href="{% url "logout" %}">Выйти</a></p>
+{% endblock %}
+{% block title %}
+{#    <p style="text-align: right;"><a href="{% url "logout" %}">Выйти</a></p>#}
+    <h2>Пользователь:
+    {% for poll in poll_list %}
+        {% if forloop.counter == 1 %}
+            {{ poll.user }}
+        {% endif %}
+    {% endfor %}
+    </h2>
+{% endblock %}

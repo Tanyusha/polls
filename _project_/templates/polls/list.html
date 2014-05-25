@@ -1,12 +1,4 @@
-{% extends "base.html" %}
-{% block title %}
-    Пользователь:
-    {% for poll in poll_list %}
-        {% if forloop.counter == 1 %}
-            {{ poll.user }}
-        {% endif %}
-    {% endfor %}
-{% endblock %}
+{% extends "base_user.html" %}
     {% block content %}
     {% if poll_list %}
         <ul>
