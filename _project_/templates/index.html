@@ -2,5 +2,8 @@
 {% load widget_tweaks %}
 
 {% block content %}
-
+{% block title %}
+ Добро пожаловать в сервис отправки опросов!
+{% endblock %}
+<p> <a href="{% url "login" %}">Войти</a> или <a href="{% url "registration" %}">Зарегистрироваться</a></p>
 {% endblock %}
