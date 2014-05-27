@@ -1,0 +1,8 @@
+{% extends "base_user.html" %}
+{% block content %}
+    <form action="/polls/add_poll/" method="post">{% csrf_token %}
+        {{ form.as_p}}
+        <br/>
+        <input type="submit" value="Добавить варианты ответов"/>
+    </form>
+{% endblock %}

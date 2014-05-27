@@ -25,7 +25,7 @@ def register(request):
                 # Return an 'invalid login' error message.
                 pass
 
-            return redirect(reverse('polls:poll_list', args=(request.user.id,)))
+            return redirect('polls:poll_index')
 
     else:
         form = UserCreationForm()

@@ -18,8 +18,10 @@
 
     {% endblock %}
 
+{% block footer %}
     <footer>
-        go <a href="{% url 'index' %}">home</a>
+        <a href="{% url "polls:poll_index" %}">Вернуться в профиль</a>
     </footer>
+{% endblock %}
 </body>
 </html>

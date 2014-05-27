@@ -6,4 +6,9 @@ body {
     text-align: center;
     padding: 10px 100px;
 }
+.user_list_poll {
+    float: left;
+    width: 50%;
+    text-align: left;
+}
 
