@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1230078791">
+  <component name="DataSourceManagerImpl" format="xml" hash="894565914">
     <data-source source="LOCAL" name="SQLite - db.sqlite3" uuid="c5ed06de-394b-48cf-980a-dc3f85af957e">
       <driver-ref>sqlite.zentus</driver-ref>
       <synchronize>true</synchronize>

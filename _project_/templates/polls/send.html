@@ -1,0 +1,16 @@
+{% extends "base_user.html" %}
+    {% block content %}
+        <h3>Вопрос: {{ poll.question }}</h3>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <p>Варианты ответов:</p>
+        {% for choice in poll.choice_set.all %}
+            <p>{{ choice.choice_text }}</p>
+        {% endfor %}
+
+        <form action="." method="post">
+        {% csrf_token %}
+        <p>{{ form.poll }}</p>
+        <p>Кому: {{ form.user }}</p>
+        <input type="submit" value="Отправить" class="btn btn-primary button"/>
+        </form>
+    {% endblock %}

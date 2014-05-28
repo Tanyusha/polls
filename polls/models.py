@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Poll(models.Model):
     user = models.ForeignKey(User)
     question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', auto_now=True)
 
     def __unicode__(self):
         return self.question
@@ -31,3 +31,12 @@ class Choice(models.Model):
     def __unicode__(self):
         return self.choice_text
 
+
+class ReceivePolls(models.Model):
+    user = models.ForeignKey(User)
+    poll = models.ForeignKey(Poll)
+    is_answered = models.BooleanField(default=False)
+    answer = models.CharField(max_length=200, blank=True)
+
+    def __unicode__(self):
+        return self.poll.question

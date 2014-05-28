@@ -1,0 +1,51 @@
+{% extends "base_user.html" %}
+{% block content %}
+    <div class="user_list_poll">
+        <h3>Мои опросы</h3>
+        {% if poll_list %}
+            {% for poll in poll_list %}
+                <p>
+{#                    <a href="{% url 'polls:send' poll_id=poll.id %}">#}
+{#                        <button type="button" class="btn btn-primary button" data-title="Удалить опрос">#}
+{#                            <span class="glyphicon glyphicon-remove"></span>#}
+{#                        </button>#}
+{#                    </a>#}
+{#                    <a href="{% url 'polls:send' poll_id=poll.id %}">#}
+{#                        <button type="button" class="btn btn-primary button" data-title="Редактировать опрос">#}
+{#                            <span class="glyphicon glyphicon-pencil"></span>#}
+{#                        </button>#}
+{#                    </a>#}
+                    <a href="{% url 'polls:send' poll_id=poll.id %}">
+                        <button type="button" class="btn btn-primary button" data-title="Отправить опрос
+                        пользователю">
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                        </button>
+                    </a>
+                    {{ poll.question }}
+                </p>
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+        <p>
+            <a href="{% url "polls:add_poll" %}">
+                <button type="button" class="btn btn-primary button" data-title="Добавить опрос" style="margin-left: 70px;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+
+            </a>
+        </p>
+    </div>
+    <div class="user_recieve_polls">
+        <h3>Полученные опросы</h3>
+        {% for recv_poll in recv_polls %}
+            <a href="{% url "polls:detail" recv_id=recv_poll.id %}">{{ recv_poll }}</a>
+            <br/>
+        {% empty %}
+            еще нет!
+        {% endfor %}
+    </div>
+    <div style="clear: both"></div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

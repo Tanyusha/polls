@@ -3,13 +3,13 @@ __author__ = 'Таника'
 
 # coding=utf-8
 from django import forms
-from polls.models import Poll, Choice
+from polls.models import Poll, Choice, ReceivePolls
 
 
 class AddPollForm(forms.ModelForm):
     class Meta:
         model = Poll
-        fields = ('question', 'user', 'pub_date')
+        fields = ('question',)
         widgets = {
             'question': forms.TextInput(attrs={'placeholder': 'poll'}),
         }
@@ -22,7 +22,13 @@ class AddPollForm(forms.ModelForm):
 class AddChoiceForm(forms.ModelForm):
     class Meta:
         model = Choice
-        fields = ('poll', 'choice_text', 'votes',)
+        fields = ('choice_text',)
         widgets = {
-            'choice_text': forms.Textarea(attrs={'placeholder': 'choice'})
+            'choice_text': forms.TextInput(attrs={'placeholder': 'choice', 'autofocus':'autofocus'})
         }
+
+
+class SendPollForm(forms.ModelForm):
+    class Meta:
+        model = ReceivePolls
+        fields = ('user', )

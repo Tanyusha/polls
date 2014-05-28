@@ -3,24 +3,32 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"/>
+    <link href="{% static 'bootstrap-3.1.1-dist/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static 'bootstrap-3.1.1-dist/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
 {% block exit %}
 {% endblock %}
 <h1>Обмен опросниками</h1>
+
 <p>
-{% block title %}
-{% endblock %}
+    {% block title %}
+    {% endblock %}
 </p>
 
-    {% block content %}
+{% block content %}
 
-    {% endblock %}
+{% endblock %}
 
 {% block footer %}
-    <footer>
-        <a href="{% url "polls:poll_index" %}">Вернуться в профиль</a>
+    <footer style="margin-top: 20px;">
+        <a href="{% url "polls:poll_index" %}">
+            <button type="button" class="btn btn-primary button" data-title="Вернуться в профиль">
+                <span class="glyphicon glyphicon-home"></span>
+            </button>
+        </a>
     </footer>
 {% endblock %}
 </body>

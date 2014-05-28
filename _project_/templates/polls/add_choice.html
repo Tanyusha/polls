@@ -1,8 +1,15 @@
 {% extends "base_user.html" %}
 {% block content %}
-    <form action="/polls/add_choice/" method="post">{% csrf_token %}
+    <form action="." method="post">{% csrf_token %}
+        <h3>{{ poll }}</h3>
+        {% for x in choices %}
+            <p>{{ x.choice_text }}</p>
+        {% empty %}
+            <p>Нет вариантов!</p>
+        {% endfor %}
+
         {{ form.as_p}}
         <br/>
-        <input type="submit" value="Сохранить"/>
+        <input type="submit" value="Добавить" style="margin-bottom: 30px;"/>
     </form>
 {% endblock %}

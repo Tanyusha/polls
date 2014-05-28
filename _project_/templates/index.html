@@ -2,10 +2,15 @@
 {% load widget_tweaks %}
 
 {% block title %}
- Добро пожаловать в сервис отправки опросов!
+    Добро пожаловать в сервис отправки опросов!
 {% endblock %}
 {% block content %}
-<p> <a href="{% url "login" %}">Войти</a> или <a href="{% url "registration" %}">Зарегистрироваться</a></p>
+    {% if user.is_authenticated %}
+        <script>window.location = '{% url 'polls:poll_index' %}';</script>
+    {% else %}
+        <p><a href="{% url "login" %}">Войти</a> или <a href="{% url "registration" %}">Зарегистрироваться</a></p>
+    {% endif %}
+
 {% endblock %}
 {% block footer %}
 {% endblock %}

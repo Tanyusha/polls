@@ -1,14 +1,19 @@
 {% extends "base_user.html" %}
     {% block content %}
-        <h1>{{ poll.question }}</h1>
+        {% if receivepolls.is_answered %}
+            <script>window.location = '{% url 'polls:results' poll_id=receivepolls.poll.id %}'</script>
+        {% endif %}
+
+        <h1>{{ receivepolls.poll.question }}</h1>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-        <form action="{% url 'polls:vote' poll.id %}" method="post">
+        <form action="{% url 'polls:vote' receivepolls.id %}" method="post">
         {% csrf_token %}
-        {% for choice in poll.choice_set.all %}
+        {% for choice in receivepolls.poll.choice_set.all %}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
             <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
         {% endfor %}
         <input type="submit" value="Vote" />
         </form>
+
     {% endblock %}
