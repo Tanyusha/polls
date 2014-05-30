@@ -1,10 +1,12 @@
 {% extends "base_user.html" %}
 {% block content %}
-    <h3>{{ poll.question }}</h3>
+    <div class="content_box" style="width: 50%">
+        <h3 style="color: #ee4c8d;">{{ poll.question }}</h3>
 
-    {% for choice in poll.choice_set.all %}
-        <p>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</p>
-    {% endfor %}
+        {% for choice in poll.choice_set.all %}
+            <p>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</p>
+        {% endfor %}
+    </div>
     <p style="text-align: right;">
         <a href="{% url "polls:votes_details" poll_id=poll.id %}">Подробнее о голосах</a>
     </p>

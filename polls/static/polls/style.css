@@ -9,8 +9,12 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
+}
 
-
+.my_h3 {
+    margin-top: 40px;
+    color: #8d1645;
+    text-align: center;
 }
 
 input[type=text]:focus, #id_user:focus {
@@ -55,10 +59,11 @@ p {
     font-size: 16px !important;
 }
 .user_list_poll {
-    float: left;
-    width: 50%;
+    float:left;
     text-align: left;
-    position: relative;
+    width: 49%;
+    border-right: 4px solid #cb5583;
+
 }
 
 h1 {
@@ -98,7 +103,33 @@ select {
     border: 0;
     font-size: 16px;
     line-height: 1;
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     width: 250px;
     /*background: url(images/1.jpg) no-repeat right #DDD;*/
+}
+
+.content_box {
+    opacity: 0.75;
+    background: #fff;
+    border-radius: 5px;
+    margin:0 auto;
+    padding: 10px 0 20px 0
+}
+
+.user_recieve_polls {
+    float:left;
+    width: 49%;
+}
+
+
+.my_polls {
+    margin-left: 30px;
+}
+
+.my_container {
+    float:left;
+    width:100%;
+    opacity: 0.75;
+    background: #fff;
+    border-radius: 5px;
 }

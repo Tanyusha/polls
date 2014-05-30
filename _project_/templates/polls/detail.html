@@ -3,21 +3,23 @@
         {% if receivepolls.is_answered %}
             <script>window.location = '{% url 'polls:results' poll_id=receivepolls.poll.id %}'</script>
         {% endif %}
+        <div class="content_box">
+            <h3 style="color: #ee4c8d;">{{ receivepolls.poll.question }}</h3>
 
-        <h1>{{ receivepolls.poll.question }}</h1>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-        <form action="{% url 'polls:vote' receivepolls.id %}" method="post">
-        {% csrf_token %}
-        <div class="choices">
-        {% for choice in receivepolls.poll.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-        {% endfor %}
+            <form action="{% url 'polls:vote' receivepolls.id %}" method="post">
+                {% csrf_token %}
+                <div class="choices">
+                    {% for choice in receivepolls.poll.choice_set.all %}
+                        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br/>
+                    {% endfor %}
+                </div>
+                {% if receivepolls.poll.choice_set.all.count != 0 %}
+                    <input type="submit" value="Голосовать" class="btn btn-primary button bt"/>
+                {% endif %}
+            </form>
         </div>
-        {% if receivepolls.poll.choice_set.all.count != 0 %}
-        <input type="submit" value="Голосовать" class="btn btn-primary button bt"/>
-        {% endif %}
-        </form>
 
     {% endblock %}

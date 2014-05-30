@@ -1,18 +1,20 @@
 {% extends "base_user.html" %}
 {% block content %}
-    {% for choice in choices %}
-        <p>
-            {{ choice.choice_text }}
-            (Ответили:
-            {% for sel_poll in  selected_poll %}
-                {% if choice.choice_text == sel_poll.answer %}
-                    {{ sel_poll.user }}
-                {% else %}
-                    {% if  forloop.counter == 1 %}
-                        -
+    <div class="content_box" style="width: 40%; padding-top: 20px">
+        {% for choice in choices %}
+            <p>
+                {{ choice.choice_text }}
+                (Ответили:
+                {% for sel_poll in  selected_poll %}
+                    {% if choice.choice_text == sel_poll.answer %}
+                        {{ sel_poll.user }}
+                    {% else %}
+                        {% if  forloop.counter == 1 %}
+                            -
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-            )</p>
-    {% endfor %}
+                {% endfor %}
+                )</p>
+        {% endfor %}
+    </div>
 {% endblock %}
