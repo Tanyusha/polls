@@ -3,6 +3,6 @@
     <form action="{% url 'polls:add_poll' %}" method="post">{% csrf_token %}
         {{ form.as_p}}
         <br/>
-        <input type="submit" value="Добавить варианты ответов"/>
+        <input type="submit" value="Добавить варианты ответов" class="btn btn-primary button bt"/>
     </form>
 {% endblock %}

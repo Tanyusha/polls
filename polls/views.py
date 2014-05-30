@@ -91,7 +91,8 @@ def vote(request, recv_id):
     try:
         selected_choice = recv_poll.poll.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'polls/detail.html', {'poll': recv_poll, 'error_message': "You didn't select a choice.", })
+        return render(request, 'polls/detail.html',
+                      {'poll': recv_poll, 'error_message': "You didn't select a choice.", })
     else:
         selected_choice.votes += 1
         selected_choice.save()
@@ -119,3 +120,67 @@ def send(request, poll_id):
         'poll': poll,
         'form': form,
     })
+
+
+def votes_details(request, poll_id):
+    poll = get_object_or_404(Poll, id=poll_id)
+    selected_poll = ReceivePolls.objects.filter(poll_id=poll.id)
+    print selected_poll
+    choices = Choice.objects.filter(poll_id=poll.id)
+    print choices
+    for choice in choices:
+        print choice.choice_text
+    return render(request, 'polls/votes_details.html', {
+        'poll': poll,
+        'selected_poll': selected_poll,
+        'choices': choices
+    })
+
+
+def poll_delete(request, poll_id):
+    poll = get_object_or_404(Poll, id=poll_id)
+    if request.user == poll.user:
+        poll.delete()
+    return redirect('polls:poll_index')
+
+
+def edit(request, poll_id):
+    poll = get_object_or_404(Poll, id=poll_id)
+    choices = Choice.objects.filter(poll_id=poll.id)
+    if request.method == "POST":
+        k = request.POST.keys()
+        for key in k:
+            if key.startswith("choice_"):
+                text, index = key.split('_', 1)
+                choice = Choice.objects.get(id=index)
+                if request.POST[key] == '':
+                    choice.delete()
+                else:
+                    choice.choice_text = request.POST[key]
+                    # print choice.choice_text
+                    choice.save()
+            else:
+                if key.startswith("poll_question"):
+                    if request.POST[key] == '':
+                        poll.delete()
+                        print "ddd"
+                        return redirect('polls:del_message')
+                    else:
+                        poll.question = request.POST[key]
+                        poll.save()
+    return render(request, 'polls/edit.html', {
+        'poll': poll,
+        'choices': choices
+    })
+
+
+def choice_delete(request, poll_id, choice_id):
+    poll = get_object_or_404(Poll, id=poll_id)
+    choice = get_object_or_404(Choice, id=choice_id)
+    if request.user == poll.user:
+        choice.delete()
+    return redirect('polls:edit', poll_id=poll.id)
+
+
+def del_message(request):
+    return render(request, 'polls/del_message.html')

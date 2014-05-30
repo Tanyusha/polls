@@ -1,0 +1,29 @@
+{% extends "base_user.html" %}
+{% block content %}
+    <form action="." method="post">
+        {% csrf_token %}
+        <p>Вопрос: <input type="text" name="poll_question" value="{{ poll.question }}"/></p>
+
+        <p>Варианты ответов</p>
+        {% for choice in choices %}
+            <p>
+                <input type="text" name="choice_{{ choice.id }}" value="{{ choice.choice_text }}"/>
+                <a href="{% url 'polls:choice_del' poll_id=poll.id choice_id=choice.id %}">
+                        <button type="button" class="btn btn-primary button" data-title="Удалить ответ">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </a>
+            </p>
+        {% endfor %}
+        <input type="submit" value="Сохранить" class="btn btn-primary button" style="margin: 10px"/>
+        <div style="margin-top:10px; display: inline-block">
+            <a href="{% url "polls:add_choice" poll_id=poll.id %}">
+                    <button type="button" class="btn btn-primary button" data-title="Добавить вариант ответа">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+            </a>
+        </div>
+    </form>
+{#    <br/>#}
+
+{% endblock %}

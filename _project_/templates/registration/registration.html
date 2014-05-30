@@ -17,17 +17,17 @@
         {% endif %}
 
         {{ form.username.errors }}
-        {% render_field form.username placeholder=form.username.label %}
+        {% render_field form.username placeholder=form.username.label class="text_input" %}
         <br/>
 
         {{ form.password1.errors }}
-        {% render_field form.password1 placeholder=form.password1.label %}
+        {% render_field form.password1 placeholder=form.password1.label class="text_input" %}
         <br/>
 
         {{ form.password2.errors }}
-        {% render_field form.password2 placeholder=form.password2.label %}
+        {% render_field form.password2 placeholder=form.password2.label class="text_input" %}
         <br/>
 
-        <input type="submit" value="Зарегистрировать"/>
+        <input type="submit" value="Зарегистрировать" class="btn btn-primary button bt"/>
     </form>
 {% endblock %}

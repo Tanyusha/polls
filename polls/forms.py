@@ -7,25 +7,17 @@ from polls.models import Poll, Choice, ReceivePolls
 
 
 class AddPollForm(forms.ModelForm):
+    question = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Вопрос', 'autofocus':'autofocus'}), label='')
     class Meta:
         model = Poll
         fields = ('question',)
-        widgets = {
-            'question': forms.TextInput(attrs={'placeholder': 'poll'}),
-        }
-
-    # def __init__(self, user):
-    #     super(AddPollForm, self).__init__(user)
-    #     self.user = user
 
 
 class AddChoiceForm(forms.ModelForm):
+    choice_text = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Варианты ответов', 'autofocus':'autofocus'}), label='')
     class Meta:
         model = Choice
         fields = ('choice_text',)
-        widgets = {
-            'choice_text': forms.TextInput(attrs={'placeholder': 'choice', 'autofocus':'autofocus'})
-        }
 
 
 class SendPollForm(forms.ModelForm):

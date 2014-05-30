@@ -5,18 +5,18 @@
         {% if poll_list %}
             {% for poll in poll_list %}
                 <p>
-{#                    <a href="{% url 'polls:send' poll_id=poll.id %}">#}
-{#                        <button type="button" class="btn btn-primary button" data-title="Удалить опрос">#}
-{#                            <span class="glyphicon glyphicon-remove"></span>#}
-{#                        </button>#}
-{#                    </a>#}
-{#                    <a href="{% url 'polls:send' poll_id=poll.id %}">#}
-{#                        <button type="button" class="btn btn-primary button" data-title="Редактировать опрос">#}
-{#                            <span class="glyphicon glyphicon-pencil"></span>#}
-{#                        </button>#}
-{#                    </a>#}
+                    <a href="{% url 'polls:poll_del' poll_id=poll.id %}">
+                        <button type="button" class="btn btn-primary button mybt" data-title="Удалить опрос">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </a>
+                    <a href="{% url 'polls:edit' poll_id=poll.id %}">
+                        <button type="button" class="btn btn-primary button mybt" data-title="Редактировать опрос">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </a>
                     <a href="{% url 'polls:send' poll_id=poll.id %}">
-                        <button type="button" class="btn btn-primary button" data-title="Отправить опрос
+                        <button type="button" class="btn btn-primary button mybt" data-title="Отправить опрос
                         пользователю">
                             <span class="glyphicon glyphicon-bullhorn"></span>
                         </button>
@@ -29,7 +29,7 @@
         {% endif %}
         <p>
             <a href="{% url "polls:add_poll" %}">
-                <button type="button" class="btn btn-primary button" data-title="Добавить опрос" style="margin-left: 70px;">
+                <button type="button" class="btn btn-primary button" data-title="Добавить опрос" style="margin: 20px 150px 0;">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
 

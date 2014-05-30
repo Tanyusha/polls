@@ -9,11 +9,15 @@
 
         <form action="{% url 'polls:vote' receivepolls.id %}" method="post">
         {% csrf_token %}
+        <div class="choices">
         {% for choice in receivepolls.poll.choice_set.all %}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
             <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
         {% endfor %}
-        <input type="submit" value="Vote" />
+        </div>
+        {% if receivepolls.poll.choice_set.all.count != 0 %}
+        <input type="submit" value="Голосовать" class="btn btn-primary button bt"/>
+        {% endif %}
         </form>
 
     {% endblock %}
